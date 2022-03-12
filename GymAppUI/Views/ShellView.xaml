@@ -1,0 +1,330 @@
+﻿<Window x:Class="GymAppUI.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GymAppUI.Views"
+        mc:Ignorable="d"
+        Title="ShellView" 
+        Height="700" 
+        Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Background="#FF202023">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--BAR Grid-->
+        <Grid  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Background="#FF1C1C25"   Panel.ZIndex="1" MinHeight="50" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <!--Bar-->
+            <Button Grid.Column="4" Style="{StaticResource BarButton}" Content="_" Click="Button_Click"  >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="35"
+                                    Height="35"
+                                    CornerRadius="15"
+                                    Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Column="5" Style="{StaticResource BarButton}" Content="X" Click="Button_Click_1" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="35"
+                                    Height="35"
+                                    CornerRadius="15"
+                                    Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <!--Bar-->
+        </Grid>
+        <!--BAR Grid-->
+
+        <!--Nav-->
+        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"  Background="#FF202023" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Upper Home Button-->
+            <Button x:Name="Homebtn" Grid.Row="0" Grid.Column="0"   Style="{StaticResource MenuButton}" >
+                <Button.Content>
+                    <Image Source="D:\vs projekty\portfolio\GymApplication\GymApp\ICON\mainicon.png" InputScope=""/>
+                </Button.Content>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border MinWidth="60"
+                            MinHeight="50"
+                            CornerRadius="15" 
+                            Background="{TemplateBinding Background}"
+                            >
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              >
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <!--Upper Home Button-->
+            
+            <!--Bottom Buttons-->
+            <Button x:Name="Addbtn" Grid.Row="2"  Style="{StaticResource MenuButton}" Content="Add Workout">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border MinWidth="130"
+                                MaxWidth="150"
+                                    MinHeight="50"
+                                MaxHeight="60"
+                                    CornerRadius="15" 
+                                    Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="Historybtn" Grid.Row="3" Style="{StaticResource MenuButton}" Content="History"   >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border MinWidth="130"
+                                MaxWidth="150"
+                                    MinHeight="50"
+                                MaxHeight="60"
+                                    CornerRadius="15" 
+                                    Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="Workoutbtn" Grid.Row="4" Style="{StaticResource MenuButton}" Content="Workout" Margin="10,10,10,20" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border MinWidth="130"
+                                MaxWidth="150"
+                                    MinHeight="50"
+                                MaxHeight="60"
+                                    CornerRadius="15" 
+                                    Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <!--Bottom Buttons-->
+            
+        </Grid>
+        <!--Nav-->
+        
+        <!--strips-->
+        <Grid   Grid.ColumnSpan="2" 
+               
+                Grid.RowSpan="5" Margin="0,-100,-400,-10" Panel.ZIndex="0" Grid.Column="2">
+            <Grid.RenderTransform>
+                <RotateTransform Angle="55"/>
+            </Grid.RenderTransform>
+
+            <Grid Margin="-70,-30,-10,-10" MinWidth="700">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,60,0" >
+                    <Border MinWidth="444"
+                                    
+                            MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FFA5A9D4"
+                                    Margin="-120,0,-90,580"
+                                    />
+                    <Border MinWidth="500"
+                                    MaxHeight="35"
+                            
+                                    CornerRadius="20"
+                                    Background="#FF080915"
+                                    Margin="-190,0,-100,480"/>
+                    <Border MinWidth="500"
+                                    MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FF0D1019"
+                                    Margin="-250,10,-100,380"/>
+                </Grid>
+
+                <Grid Grid.Column="1"  Margin="0,0,0,0">
+                    <Border MinWidth="962"
+                                    
+                                    MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FFA5A9D4"
+                                    Margin="50,0,-500,580"/>
+                    <Border MinWidth="543"
+                                    MaxHeight="35"
+                            
+                                    CornerRadius="20"
+                                    Background="#FF080915"
+                                    Margin="60,10,-510,480"/>
+                    <Border MinWidth="511"
+                                    MaxHeight="35"
+                                    
+                                    CornerRadius="20"
+                                    Background="#FF0D1019"
+                                    Margin="60,20,-500,380"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid   Grid.ColumnSpan="2" Opacity="0.1"
+               
+                Grid.RowSpan="5" Margin="0,-100,-400,-10" Panel.ZIndex="0" Grid.Column="2">
+            <Grid.RenderTransform>
+                <RotateTransform Angle="55"/>
+            </Grid.RenderTransform>
+
+            <Grid Margin="-70,-600,-10,-10" MinWidth="700">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,60,0" >
+                    <Border MinWidth="444"
+                                    
+                            MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FFA5A9D4"
+                                    Margin="-120,0,-90,580"
+                                    />
+                    <Border MinWidth="500"
+                                    MaxHeight="35"
+                            
+                                    CornerRadius="20"
+                                    Background="#FF080915"
+                                    Margin="-190,0,-100,480"/>
+                    <Border MinWidth="500"
+                                    MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FF0D1019"
+                                    Margin="-250,10,-100,380"/>
+                </Grid>
+
+                <Grid Grid.Column="1"  Margin="0,0,0,0">
+                    <Border MinWidth="962"
+                                    
+                                    MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FFA5A9D4"
+                                    Margin="50,0,-500,580"/>
+                    <Border MinWidth="543"
+                                    MaxHeight="35"
+                            
+                                    CornerRadius="20"
+                                    Background="#FF080915"
+                                    Margin="60,10,-510,480"/>
+                    <Border MinWidth="511"
+                                    MaxHeight="35"
+                                    
+                                    CornerRadius="20"
+                                    Background="#FF0D1019"
+                                    Margin="60,20,-500,380"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid   Grid.ColumnSpan="2" Opacity="0.1" 
+               
+                Grid.RowSpan="5" Margin="0,-100,-400,-30" Grid.Column="2">
+            <Grid.RenderTransform>
+                <RotateTransform Angle="55"/>
+            </Grid.RenderTransform>
+
+            <Grid Margin="-70,300,0,-250" MinWidth="700">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,60,0"   >
+                    <Border MinWidth="444"
+                                   
+                            MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FFA5A9D4"
+                                    Margin="-120,0,-90,580"
+                                    />
+                    <Border MinWidth="500"
+                                    MaxHeight="35"
+                            
+                                    CornerRadius="20"
+                                    Background="#FF080915"
+                                    Margin="-190,0,-100,480"/>
+                    <Border MinWidth="500"
+                                    MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FF0D1019"
+                                    Margin="-250,10,-100,380"/>
+                </Grid>
+
+                <Grid Grid.Column="1"  Margin="0,0,0,0">
+                    <Border MinWidth="962"
+                                    
+                                    MaxHeight="35"
+                                    CornerRadius="20"
+                                    Background="#FFA5A9D4"
+                                    Margin="50,0,-500,580"/>
+                    <Border MinWidth="543"
+                                    MaxHeight="35"
+                            
+                                    CornerRadius="20"
+                                    Background="#FF080915"
+                                    Margin="60,10,-510,480"/>
+                    <Border MinWidth="511"
+                                    MaxHeight="35"
+                                    
+                                    CornerRadius="20"
+                                    Background="#FF0D1019"
+                                    Margin="60,20,-500,380"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--strips-->
+
+        <!--ViewModels-->
+        <ContentControl Name="ActiveItem" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+        <!--ViewModels-->
+    </Grid>
+</Window>

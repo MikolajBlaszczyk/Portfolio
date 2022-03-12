@@ -1,0 +1,237 @@
+﻿<UserControl x:Class="GymAppUI.Views.WorkoutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GymAppUI.Views"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="ScrollBar"  BasedOn="{StaticResource ScrollBarView}"/>
+        
+    </UserControl.Resources>
+    
+    <Grid Style="{StaticResource SwitchableContent}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" Grid.Column="1"
+                Style="{StaticResource HistoryBorder}"
+                Margin="0"
+                Padding="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Border Grid.Row="0"
+                        Grid.Column="2"
+                        Grid.RowSpan="3"
+                        Width="120"
+                        
+                        Background="#FF1C1B23">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition />
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Content="Delete Workout"
+                                x:Name="Delete"
+                                Margin="10"
+                                Style="{StaticResource MainWorkoutButton}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border MinWidth="30"
+                                            Height="30"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <StackPanel Grid.Row="2"
+                                    CanHorizontallyScroll="False">
+                            <Border Width="100"
+                                    Height="250"
+                                    Background="Transparent">
+                                <ListBox Background="Transparent"
+                                         ItemsSource="{Binding Path=Excercise}"
+                                         SelectedItem="{Binding Path=SelectedItem}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Name}"
+                                                       TextWrapping="Wrap"
+                                                       MaxWidth="80"
+                                                       Foreground="White"
+                                                       FontSize="14"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Border>
+                        </StackPanel>
+                      
+                        <Button x:Name="Add"
+                                Grid.Row="4"
+                                Content="Add Excercise"
+                                Margin="10"
+                                Style="{StaticResource MainWorkoutButton}"
+                                >
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border MinWidth="30"
+                                            MinHeight="30"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" MaxWidth="120"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                   
+                    
+                    <Grid Grid.Row="1"
+                              Grid.Column="1">
+                        <ScrollViewer>
+                          
+                        <DataGrid ItemsSource="{Binding Path=ThisTraining}"
+                              SelectedItem="{Binding Path=Selected}"
+                            
+                              
+                              Style="{StaticResource DataGridStyleExcercise}"
+                              CellStyle="{StaticResource DataGridCellStyleExcercise}"
+                              RowStyle="{StaticResource DataGridRowStyleExcercise}"
+                              ColumnHeaderStyle="{StaticResource DataGridColumnStyleExcercise}"
+                              RowHeaderStyle="{StaticResource DataGridRowHeaderStyleExcercise}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=Weight,Mode=TwoWay}"
+                                                     VerticalAlignment="Center" Width="30" Margin="10" MinWidth="50"/>
+                                                <!--<Button  Grid.Row="0" Grid.Column="1"  Content="U">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <cal:ActionMessage MethodName="UppW"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Button>
+                                            <Button  Grid.Row="1" Grid.Column="1"  Content="D">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <cal:ActionMessage MethodName="DownW"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Button>-->
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=Count, Mode=TwoWay}" 
+                                                     VerticalAlignment="Center"  MinWidth="50"/>
+                                                <!--<Button  Grid.Row="0" Grid.Column="1"  Content="U">
+                                                -->
+                                                <!--<i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <cal:ActionMessage MethodName="UppC"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Button>
+                                            <Button  Grid.Row="1" Grid.Column="1"  Content="D">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <cal:ActionMessage MethodName="DownC"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>-->
+                                                <!--
+                                            </Button>-->
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                    
+                    
+
+                    <Button x:Name="Finish" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Finish Workout"
+                            Style="{StaticResource Accept Button}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100"
+                                        Height="40"
+                                        CornerRadius="15"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>                        
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
