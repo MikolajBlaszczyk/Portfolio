@@ -28,7 +28,15 @@
         </Grid.RowDefinitions>
 
         <!--BAR Grid-->
-        <Grid  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Background="#FF121927"   Panel.ZIndex="1" MinHeight="50" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Panel.ZIndex="4"
+                >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#E5121927" Offset="0.7"/>
+                    <GradientStop Color="#C5121927" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid   Background="#E5121927"   Panel.ZIndex="1" MinHeight="50" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="Auto" />
@@ -66,6 +74,7 @@
             </Button>
             <!--Bar-->
         </Grid>
+        </Border>
         <!--BAR Grid-->
 
         <!--Nav-->
@@ -82,7 +91,7 @@
             <!--Upper Home Button-->
             <Button x:Name="Homebtn" Grid.Row="0" Grid.Column="0"   Style="{StaticResource MenuButton}" >
                 <Button.Content>
-                    <Image Source="D:\vs projekty\portfolio\GymApplication\GymApp\ICON\mainicon.png" InputScope=""/>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\arrow-right-to-bracket.png" Width="30" Height="30"/>
                 </Button.Content>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -102,13 +111,17 @@
             <!--Upper Home Button-->
             
             <!--Bottom Buttons-->
-            <Button x:Name="Addbtn" Grid.Row="2"  Style="{StaticResource MenuButton}" Content="Add Workout">
+            <Button x:Name="Addbtn" Grid.Row="2"  Style="{StaticResource MenuButton}" Panel.ZIndex="6">
+                <Button.Content>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\paste.png"/>
+                </Button.Content>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border MinWidth="130"
                                 MaxWidth="150"
                                     MinHeight="50"
-                                MaxHeight="60"
+                                MaxHeight="70"
+                                Padding="10"
                                     CornerRadius="15" 
                                     Background="{TemplateBinding Background}">
 
@@ -118,13 +131,17 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="Historybtn" Grid.Row="3" Style="{StaticResource MenuButton}" Content="History"   >
-                <Button.Template>
+            <Button x:Name="Historybtn" Grid.Row="3" Style="{StaticResource MenuButton}"   >
+                <Button.Content>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\book.png"/>
+                </Button.Content>
+                    <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border MinWidth="130"
                                 MaxWidth="150"
                                     MinHeight="50"
-                                MaxHeight="60"
+                                MaxHeight="70"
+                                Padding="10"
                                     CornerRadius="15" 
                                     Background="{TemplateBinding Background}">
 
@@ -134,13 +151,17 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="Workoutbtn" Grid.Row="4" Style="{StaticResource MenuButton}" Content="Workout" Margin="10,10,10,20" >
+            <Button x:Name="Workoutbtn" Grid.Row="4" Style="{StaticResource MenuButton}" Margin="10,10,10,20" >
+                <Button.Content>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\circle-play.png"/>
+                </Button.Content>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border MinWidth="130"
                                 MaxWidth="150"
                                     MinHeight="50"
-                                MaxHeight="60"
+                                MaxHeight="70"
+                                Padding="10"
                                     CornerRadius="15" 
                                     Background="{TemplateBinding Background}">
 

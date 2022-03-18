@@ -74,7 +74,8 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0"  Content="Workout Name" Foreground="#FF171717" FontSize="16" FontFamily="Lato Semibold"/>
+                        <Label Grid.Column="0"  Content="Workout Name" Foreground="#FF171717" FontSize="16" FontFamily="Lato Semibold"
+                               BorderThickness="0,0,2,0" BorderBrush="black"/>
                         <TextBox Grid.Column="1" x:Name="NameWorkout">
                             <TextBox.Style>
                                 <Style TargetType="TextBox">
@@ -84,11 +85,7 @@
                                     <Setter Property="Padding" Value="0,5,0,0"/>
                                     <Setter Property="FontSize" Value="16"/>
                                     <Setter Property="Foreground" Value="#FF171717"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Cursor" Value="Hand"/>
-                                        </Trigger>
-                                    </Style.Triggers>
+                                    
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
@@ -98,10 +95,11 @@
                 <Border Grid.Row="1" CornerRadius="10"  Background="#FFB1B5D6" >
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Pick a Date" Foreground="#FF171717" FontSize="16" Margin="0,0,30,0" FontFamily="Lato Semibold"/>
+                        <Label Grid.Column="0" Content="Pick a Date"  Foreground="#FF171717" FontSize="16" Margin="0,0,140,0" FontFamily="Lato Semibold"
+                               BorderThickness="0,0,2,0" BorderBrush="black" Padding="10,4.5,28.5,0" />
                         <DatePicker Grid.Column="1" SelectedDate="{Binding Path=_SelectedDate}"
                                     FontSize="16" BorderBrush="{x:Null}"
                                     CalendarStyle="{StaticResource CalendarSTYYLE}">
@@ -146,54 +144,7 @@
 
 
             </Grid>
-            <!--<StackPanel Orientation="Vertical"  >
-                
-                <Border BorderThickness="0" BorderBrush="#FF495270" Margin="10">
-                    <TextBox x:Name="NameWorkout" Grid.Row="1" Grid.Column="1"
-                         Grid.ColumnSpan="2" >
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Background" Value="#FF8F959E"/>
-                                <Setter Property="BorderBrush" Value="#FF5B64C3"/>
-                                <Setter Property="Foreground" Value="#FF394F89"/>
-                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                <Setter Property="TextAlignment" Value="Center"/>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </Border>
-                <Border BorderThickness="1" BorderBrush="#FF495270" Margin="10,0,10,0">
-                    <TextBox x:Name="SelectedDate" Grid.Row="2" Grid.Column="1"  
-                         Grid.ColumnSpan="2" 
-                          
-                         >
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Background" Value="#FF8F959E"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="MinWidth" Value="200"/>
-
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </Border>
-
-                <Button x:Name="AddWorkout" Style="{StaticResource MenuButton}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Submit Button">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="90"
-                                    Height="30"
-                                    CornerRadius="15"
-                                    Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </StackPanel>-->
-
+           
         </Border>
 
         <!--row 1-->
