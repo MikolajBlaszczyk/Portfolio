@@ -16,9 +16,5 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\GymApplicationV2\BuisnessLogic\BuisnessLogic.csproj" />
-    <ProjectReference Include="..\..\GymApplicationV2\DataBase\DataBase.csproj" />
-  </ItemGroup>
 
 </Project>

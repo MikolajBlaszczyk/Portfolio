@@ -1,5 +1,6 @@
-﻿using BuisnessLogic;
+﻿
 using Caliburn.Micro;
+using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,31 +9,35 @@ using System.Threading.Tasks;
 
 namespace GymAppUI.ViewModels
 {
-    class AddViewModel:Screen
+    public class AddViewModel : Screen, IAddViewModel
     {
+        public IDBProcessor Processor { get; }
+
         public event EventHandler _addEvent;
-        private string  _nameWorkout;
+        private string _nameWorkout;
         private DateTime _date = DateTime.Now;
 
         public DateTime _SelectedDate
         {
             get { return _date; }
-            set { _date = value;NotifyOfPropertyChange(() => _SelectedDate); }
+            set { _date = value; NotifyOfPropertyChange(() => _SelectedDate); }
         }
-        public string  NameWorkout
+        public string NameWorkout
         {
             get { return _nameWorkout; }
             set { _nameWorkout = value; NotifyOfPropertyChange(() => NameWorkout); }
         }
 
-        public AddViewModel(EventHandler addEvent)
+
+
+        public AddViewModel(IDBProcessor processor)
         {
-            _addEvent = addEvent;
-        } 
+            Processor = processor;
+        }
         public void AddWorkout()
         {
-            DataFlowToDB input = new DataFlowToDB();
-            input.TransferingWorkout(_SelectedDate, NameWorkout);
+            Processor.InsertWorkout(_SelectedDate, NameWorkout);
+            //input.TransferingWorkout(_SelectedDate, NameWorkout);
             _addEvent?.Invoke(this, null);
         }
     }

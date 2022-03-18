@@ -1,4 +1,4 @@
-﻿using BuisnessLogic;
+﻿
 using Caliburn.Micro;
 using GymAppUI.Models;
 using GymAppUI.Helper;
@@ -8,18 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DataAccess;
 
 namespace GymAppUI.ViewModels
 {
-    class HistoryViewModel:Screen
+    public class HistoryViewModel : Screen, IHistoryViewModel
     {
+        public IDBProcessor Processor { get; }
+
         private BindableCollection<WorkoutModelUIWithID> workouts;
         private WorkoutModelUIWithID _selectedWorkout;
 
         public WorkoutModelUIWithID SelectedWorkout
         {
             get { return _selectedWorkout; }
-            set { _selectedWorkout = value;NotifyOfPropertyChange(() => SelectedWorkout); }
+            set { _selectedWorkout = value; NotifyOfPropertyChange(() => SelectedWorkout); }
         }
         public BindableCollection<WorkoutModelUIWithID> Workouts
         {
@@ -27,22 +30,30 @@ namespace GymAppUI.ViewModels
             set { workouts = value; NotifyOfPropertyChange(() => Workouts); }
         }
 
-        public HistoryViewModel()
-        {
-            DataFlowFromDB pull = new DataFlowFromDB();
-            ListConverter convert = new ListConverter();
 
-            Workouts = convert.ConvertListWID(pull.PullWorkoutsID());
-            
+
+        public HistoryViewModel(IDBProcessor processor)
+        {
+
+
+            Processor = processor;
+
+            //Workouts = convert.ConvertListWID(pull.PullWorkoutsID());
+        }
+
+        public async Task OnInitilize()
+        {
+            ListConverter convert = new ListConverter();
+            Workouts = convert.ConvertListWID(await Processor.GetWorkout());
         }
 
         public void Delete()
-        {      
-            DataFlowToDB delete = new DataFlowToDB();
-          
-            delete.DeletingWorkout(SelectedWorkout.ID);
+        {
+
+            Processor.DeleteWorkout(SelectedWorkout.ID);
+            //delete.DeletingWorkout(SelectedWorkout.ID);
             Workouts.Remove(SelectedWorkout);
         }
-        
+
     }
 }

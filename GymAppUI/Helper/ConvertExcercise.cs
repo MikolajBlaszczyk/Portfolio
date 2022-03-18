@@ -1,4 +1,4 @@
-﻿using BuisnessLogic.Models;
+﻿using DataAccess;
 using Caliburn.Micro;
 using GymAppUI.Models;
 using System;

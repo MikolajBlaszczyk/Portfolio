@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DataAccess;
 using GymAppUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,12 @@ namespace GymAppUI
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
 
-            
+            _container.PerRequest<IDBProcessor, DataProcessor>();
+            _container.PerRequest<ISqlDataAccess, SqlDataAccess>();
+            _container.PerRequest<IShellViewModel, ShellViewModel>();
+            _container.PerRequest<IAddViewModel, AddViewModel>();
+            _container.PerRequest<IHistoryViewModel, HistoryViewModel>();
+            _container.PerRequest<IWorkoutViewModel, WorkoutViewModel>();
 
             GetType().Assembly.GetTypes()
                .Where(type => type.IsClass)
@@ -35,9 +41,10 @@ namespace GymAppUI
                .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, viewModelType.ToString(), viewModelType));
         }
         
+
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor < ShellViewModel>();
+            DisplayRootViewFor <IShellViewModel>();
         }
 
         //Copy paste dependency Incjection

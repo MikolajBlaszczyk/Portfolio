@@ -1,12 +1,11 @@
-﻿using BuisnessLogic.Models;
-using Caliburn.Micro;
-using DataBase.Models;
+﻿using Caliburn.Micro;
 using GymAppUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess;
 
 namespace GymAppUI.Helper
 {
@@ -38,7 +37,7 @@ namespace GymAppUI.Helper
             return output;
         }
 
-        public BindableCollection<WorkoutModelUIWithID> ConvertListWID(List<WorkoutModelWIthID> input)
+        public BindableCollection<WorkoutModelUIWithID> ConvertListWID(List<WorkoutModel> input)
         {
             BindableCollection<WorkoutModelUIWithID> output = new BindableCollection<WorkoutModelUIWithID>();
 
