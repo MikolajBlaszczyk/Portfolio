@@ -15,21 +15,22 @@ namespace GymAppUI.ViewModels
     {
         public event EventHandler<WorkoutViewModel> _endOfWorkout;
 
+       
 
         private BindableCollection<ExcerciseUIModel> excercise;
         private ExcerciseUIModel _selectedItem;
         private BindableCollection<ExcerciseTrainingModel> training;
         private ExcerciseTrainingModel selected;
-
+        //prop
         public ExcerciseTrainingModel Selected
         {
             get { return selected; }
-            set { selected = value; NotifyOfPropertyChange(() => Selected); NotifyOfPropertyChange(() => ThisTraining); }
+            set { selected = value; NotifyOfPropertyChange(() => Selected); NotifyOfPropertyChange(() => CurrentTraining); }
         }
-        public BindableCollection<ExcerciseTrainingModel> ThisTraining
+        public BindableCollection<ExcerciseTrainingModel> CurrentTraining
         {
             get { return training; }
-            set { training = value; NotifyOfPropertyChange(() => ThisTraining); }
+            set { training = value; NotifyOfPropertyChange(() => CurrentTraining); }
         }
         public ExcerciseUIModel SelectedItem
         {
@@ -43,27 +44,25 @@ namespace GymAppUI.ViewModels
         }
 
         public IDBProcessor Processor { get; }
+        public IConvertExcercise CollectionConverter { get; }
+        public IListConverter ListConverter { get; }
 
-        public WorkoutViewModel(IDBProcessor processor)
+        public WorkoutViewModel(IDBProcessor processor, IConvertExcercise collectionConverter, IListConverter listConverter)
         {
             Processor = processor;
-
-
-
-            //Excercise = converter.ConvertListE(pull.PullExcerciseNames());
-
+            CollectionConverter = collectionConverter;
+            ListConverter = listConverter;
         }
 
         public async Task OnInitilize()
         {
-            ListConverter converter = new ListConverter();
-            training = new BindableCollection<ExcerciseTrainingModel>();
-            Excercise = converter.ConvertListE(await Processor.GetExcerciseName());
+            training = new();
+            Excercise = ListConverter.ConvertListE(await Processor.GetExcerciseName());
         }
 
         public void Add()
         {
-            ThisTraining.Add(new ExcerciseTrainingModel() { Name = SelectedItem.Name }); ;
+            CurrentTraining.Add(new ExcerciseTrainingModel() { Name = SelectedItem.Name }); ;
         }
 
         public void Delete()
@@ -71,20 +70,13 @@ namespace GymAppUI.ViewModels
             training.Clear();
             SelectedItem = null;
             Processor.DeleteWorkout(Processor.GetWorkoutID());
-            //dataFlow.DeletingWorkout(DataSql.GetLastWorkoutID());
-
             _endOfWorkout?.Invoke(this, this);
         }
 
         public void Finish()
         {
-
-
-            ConvertExcercise convert = new ConvertExcercise();
-            Processor.InsertWorkoutWithExcercise(convert.CollectionToList(ThisTraining));
-            //flow.TransferingEntireWorkout(convert.CollectionToList(ThisTraining));
-
-            ThisTraining.Clear();
+            Processor.InsertWorkoutWithExcercise(CollectionConverter.CollectionToList(CurrentTraining));
+            CurrentTraining.Clear();
             _endOfWorkout?.Invoke(this, this);
         }
 

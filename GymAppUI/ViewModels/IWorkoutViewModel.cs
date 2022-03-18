@@ -12,7 +12,7 @@ namespace GymAppUI.ViewModels
         IDBProcessor Processor { get; }
         ExcerciseTrainingModel Selected { get; set; }
         ExcerciseUIModel SelectedItem { get; set; }
-        BindableCollection<ExcerciseTrainingModel> ThisTraining { get; set; }
+        BindableCollection<ExcerciseTrainingModel> CurrentTraining { get; set; }
 
         event EventHandler<WorkoutViewModel> _endOfWorkout;
 

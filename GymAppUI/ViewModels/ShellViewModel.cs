@@ -62,22 +62,17 @@ namespace GymAppUI.ViewModels
         {
             ActiveItem = null;
         }
-
         public void Addbtn()
         {
             
             ActivateItemAsync(_addView);
         }
-
-       
-
         public void Historybtn()
         {
             
             ActivateItemAsync(_historyView);
             _historyView.OnInitilize();
         }
-
         public void Workoutbtn()
         {
            

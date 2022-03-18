@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DataAccess;
+using GymAppUI.Helper;
 using GymAppUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,12 @@ namespace GymAppUI
 
             _container.PerRequest<IDBProcessor, DataProcessor>();
             _container.PerRequest<ISqlDataAccess, SqlDataAccess>();
-            _container.PerRequest<IShellViewModel, ShellViewModel>();
+            _container.Singleton<IShellViewModel, ShellViewModel>();
             _container.PerRequest<IAddViewModel, AddViewModel>();
             _container.PerRequest<IHistoryViewModel, HistoryViewModel>();
             _container.PerRequest<IWorkoutViewModel, WorkoutViewModel>();
+            _container.PerRequest<IListConverter, ListConverter>();
+            _container.PerRequest<IConvertExcercise, ConvertExcercise>();
 
             GetType().Assembly.GetTypes()
                .Where(type => type.IsClass)

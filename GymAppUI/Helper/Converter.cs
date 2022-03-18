@@ -9,9 +9,9 @@ using DataAccess;
 
 namespace GymAppUI.Helper
 {
-    public class ListConverter
+    public class ListConverter : IListConverter
     {
-        
+
 
         public BindableCollection<WorkoutUIModel> ConvertListW(List<WorkoutModel> workouts)
         {
@@ -31,7 +31,7 @@ namespace GymAppUI.Helper
 
             foreach (ExcerciseNameModel name in names)
             {
-                output.Add(new ExcerciseUIModel { Name=name.ExcersiseName }) ;
+                output.Add(new ExcerciseUIModel { Name = name.ExcersiseName });
             }
 
             return output;
@@ -43,7 +43,7 @@ namespace GymAppUI.Helper
 
             foreach (var item in input)
             {
-                output.Add(new WorkoutModelUIWithID() { ID = item.WorkoutID , Name = item.WorkoutName, Date = item.WorkoutDate.ToString("dd/mm/yyyy") });
+                output.Add(new WorkoutModelUIWithID() { ID = item.WorkoutID, Name = item.WorkoutName, Date = item.WorkoutDate.ToString("dd/mm/yyyy") });
             }
 
             return output;

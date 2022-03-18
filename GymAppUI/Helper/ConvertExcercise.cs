@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace GymAppUI.Helper
 {
-    public class ConvertExcercise
+    public class ConvertExcercise : IConvertExcercise
     {
         public List<ExcerciseModel> CollectionToList(BindableCollection<ExcerciseTrainingModel> input)
         {
             List<ExcerciseModel> output = new List<ExcerciseModel>();
-            
+
             foreach (var item in input)
             {
-                output.Add(new ExcerciseModel() { ExcerciseName=item.Name, ExcerciseCount=item.Count,ExcerciseWeight= item.Weight });
+                output.Add(new ExcerciseModel() { ExcerciseName = item.Name, ExcerciseCount = item.Count, ExcerciseWeight = item.Weight });
             }
 
             return output;
-        }       
+        }
 
     }
 }
