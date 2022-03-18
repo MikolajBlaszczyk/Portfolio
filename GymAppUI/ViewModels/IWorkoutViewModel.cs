@@ -17,7 +17,7 @@ namespace GymAppUI.ViewModels
         event EventHandler<WorkoutViewModel> _endOfWorkout;
 
         void Add();
-        void Delete();
+        Task Delete();
         void Finish();
         Task OnInitilize();
     }

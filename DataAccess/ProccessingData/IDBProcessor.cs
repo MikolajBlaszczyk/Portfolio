@@ -11,7 +11,8 @@ namespace DataAccess
         Task DeleteWorkout(int id);
         Task<List<ExcerciseNameModel>> GetExcerciseName();
         Task<List<WorkoutModel>> GetWorkout();
-        int GetWorkoutID();
+        Task<List<WorkoutModel>> GetWorkoutByID(int id);
+        Task<List<int>> GetWorkoutID();
         Task InsertWorkout(DateTime date, string name);
         Task InsertWorkoutWithExcercise(List<ExcerciseModel> input);
     }

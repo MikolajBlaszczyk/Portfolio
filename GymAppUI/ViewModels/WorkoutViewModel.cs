@@ -65,11 +65,12 @@ namespace GymAppUI.ViewModels
             CurrentTraining.Add(new ExcerciseTrainingModel() { Name = SelectedItem.Name }); ;
         }
 
-        public void Delete()
+        public async Task Delete()
         {
             training.Clear();
             SelectedItem = null;
-            Processor.DeleteWorkout(Processor.GetWorkoutID());
+            var id = await Processor.GetWorkoutID();
+            await Processor.DeleteWorkout(id.FirstOrDefault());
             _endOfWorkout?.Invoke(this, this);
         }
 

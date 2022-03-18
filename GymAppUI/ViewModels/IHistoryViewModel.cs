@@ -10,6 +10,7 @@ namespace GymAppUI.ViewModels
         IDBProcessor Processor { get; }
         WorkoutModelUIWithID SelectedWorkout { get; set; }
         BindableCollection<WorkoutModelUIWithID> Workouts { get; set; }
+        WorkoutModel Saved { get; set; }
 
         void Delete();
         Task OnInitilize();

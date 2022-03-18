@@ -14,13 +14,17 @@ namespace GymAppUI.ViewModels
 {
     public class HistoryViewModel : Screen, IHistoryViewModel
     {
+        //DI
         public IDBProcessor Processor { get; }
         public IListConverter ListConverter { get; }
         public IConvertExcercise CollectionConverter { get; }
 
+        //Validation
+        public WorkoutModel Saved { get; set; }
+
+        //To view
         private BindableCollection<WorkoutModelUIWithID> workouts;
         private WorkoutModelUIWithID _selectedWorkout;
-
         public WorkoutModelUIWithID SelectedWorkout
         {
             get { return _selectedWorkout; }
@@ -48,9 +52,11 @@ namespace GymAppUI.ViewModels
 
         public void Delete()
         {
-
-            Processor.DeleteWorkout(SelectedWorkout.ID);
-            Workouts.Remove(SelectedWorkout);
+            if (Saved is null || SelectedWorkout.Name != Saved.WorkoutName)
+            {
+                Processor.DeleteWorkout(SelectedWorkout.ID);
+                Workouts.Remove(SelectedWorkout);
+            }
         }
 
     }

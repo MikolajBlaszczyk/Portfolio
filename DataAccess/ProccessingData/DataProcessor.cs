@@ -30,11 +30,17 @@ namespace DataAccess
 
             return output;
         }
-        public int GetWorkoutID()
+        public async Task<List<WorkoutModel>> GetWorkoutByID(int id)
+        {
+            string cmd = "exec dbo.spGetWorkoutByID @WorkoutID";
+            var output = await _dataAccess.GetDataAsync<WorkoutModel, dynamic>(cmd, new { WorkoutID=id });
+            return output;
+        }
+        public Task<List<int>> GetWorkoutID()
         {
             string cmd = "exec [dbo].[spGetWorkoutID]";
             var output = _dataAccess.GetDataAsync<int, dynamic>(cmd, new { });
-            return output.Result.FirstOrDefault();
+            return output;
         }
         public async Task DeleteExcercise(int id)
         {

@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using System;
+using System.Threading.Tasks;
 
 namespace GymAppUI.ViewModels
 {
@@ -9,8 +10,8 @@ namespace GymAppUI.ViewModels
         string NameWorkout { get; set; }
         IDBProcessor Processor { get; }
 
-        event EventHandler _addEvent;
+        event EventHandler<WorkoutModel> _addEvent;
 
-        void AddWorkout();
+        Task AddWorkout();
     }
 }
