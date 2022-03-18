@@ -7,6 +7,7 @@ namespace GymAppUI.Helper
 {
     public interface IListConverter
     {
+       
         BindableCollection<ExcerciseUIModel> ConvertListE(List<ExcerciseNameModel> names);
         BindableCollection<WorkoutUIModel> ConvertListW(List<WorkoutModel> workouts);
         BindableCollection<WorkoutModelUIWithID> ConvertListWID(List<WorkoutModel> input);

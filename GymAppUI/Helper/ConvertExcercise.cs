@@ -11,6 +11,7 @@ namespace GymAppUI.Helper
 {
     public class ConvertExcercise : IConvertExcercise
     {
+       
         public List<ExcerciseModel> CollectionToList(BindableCollection<ExcerciseTrainingModel> input)
         {
             List<ExcerciseModel> output = new List<ExcerciseModel>();

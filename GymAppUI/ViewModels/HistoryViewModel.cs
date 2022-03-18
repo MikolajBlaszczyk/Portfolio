@@ -20,7 +20,7 @@ namespace GymAppUI.ViewModels
         public IConvertExcercise CollectionConverter { get; }
 
         //Validation
-        public WorkoutModel Saved { get; set; }
+        public string Saved { get; set; }
 
         //To view
         private BindableCollection<WorkoutModelUIWithID> workouts;
@@ -48,11 +48,16 @@ namespace GymAppUI.ViewModels
         public async Task OnInitilize()
         {
             Workouts = ListConverter.ConvertListWID(await Processor.GetWorkout());
+            if (Saved is not null)
+            {
+                Workouts = Extensions.ToBindableCollection<WorkoutModelUIWithID>(Workouts.Where(x=> x.Name != Saved));
+
+            } 
         }
 
         public void Delete()
         {
-            if (Saved is null || SelectedWorkout.Name != Saved.WorkoutName)
+            if (Saved is null || SelectedWorkout.Name != Saved)
             {
                 Processor.DeleteWorkout(SelectedWorkout.ID);
                 Workouts.Remove(SelectedWorkout);

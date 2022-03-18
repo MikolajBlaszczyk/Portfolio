@@ -39,9 +39,18 @@ namespace GymAppUI.ViewModels
         //wire up events
         private void Wireup()
         {
-            _addView._addEvent += _addView__addEvent;
+            _addView._addEvent += _addView__addEvent; 
             _workoutView._endOfWorkout += _workoutView__endOfWorkout;
         }
+
+        private void _addView__addEvent(object sender, string e)
+        {
+            CanAddbtn = false;
+            CanWorkoutbtn = true;
+            _historyView.Saved = e;
+            Workoutbtn();
+        }
+
         //events
         private void _workoutView__endOfWorkout(object sender, WorkoutViewModel e)
         {
@@ -50,13 +59,7 @@ namespace GymAppUI.ViewModels
             CanWorkoutbtn = false;
             _historyView.Saved = null;
         }
-        private void _addView__addEvent(object sender, DataAccess.WorkoutModel e)
-        {
-            CanAddbtn = false;
-            CanWorkoutbtn = true;
-            _historyView.Saved = e;
-            Workoutbtn();
-        }
+        
       
 
 

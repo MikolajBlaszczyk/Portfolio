@@ -12,7 +12,6 @@ namespace GymAppUI.Helper
     public class ListConverter : IListConverter
     {
 
-
         public BindableCollection<WorkoutUIModel> ConvertListW(List<WorkoutModel> workouts)
         {
             BindableCollection<WorkoutUIModel> output = new BindableCollection<WorkoutUIModel>();
@@ -48,5 +47,7 @@ namespace GymAppUI.Helper
 
             return output;
         }
+
+        
     }
 }

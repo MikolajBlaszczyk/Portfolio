@@ -13,7 +13,7 @@ namespace GymAppUI.ViewModels
     {
         public IDBProcessor Processor { get; }
 
-        public event EventHandler<WorkoutModel> _addEvent;
+        public event EventHandler<string> _addEvent;
         private string _nameWorkout;
         private DateTime _date = DateTime.Now;
 
@@ -34,13 +34,11 @@ namespace GymAppUI.ViewModels
         {
             Processor = processor;
         }
-        public async Task AddWorkout()
+        public void AddWorkout()
         {
             Processor.InsertWorkout(_SelectedDate, NameWorkout);
-            var id = await Processor.GetWorkoutID();
-            var list = await Processor.GetWorkoutByID(id.FirstOrDefault());
-            var addedWorkout = list.FirstOrDefault();
-            _addEvent?.Invoke(this, addedWorkout);
+         
+            _addEvent?.Invoke(this, NameWorkout);
         }
     }
 }
