@@ -15,6 +15,8 @@ namespace GymAppUI.ViewModels
     public class HistoryViewModel : Screen, IHistoryViewModel
     {
         public IDBProcessor Processor { get; }
+        public IListConverter ListConverter { get; }
+        public IConvertExcercise CollectionConverter { get; }
 
         private BindableCollection<WorkoutModelUIWithID> workouts;
         private WorkoutModelUIWithID _selectedWorkout;
@@ -32,26 +34,22 @@ namespace GymAppUI.ViewModels
 
 
 
-        public HistoryViewModel(IDBProcessor processor)
+        public HistoryViewModel(IDBProcessor processor, IListConverter listConverter, IConvertExcercise collectionConverter)
         {
-
-
             Processor = processor;
-
-            //Workouts = convert.ConvertListWID(pull.PullWorkoutsID());
+            ListConverter = listConverter;
+            CollectionConverter = collectionConverter;
         }
 
         public async Task OnInitilize()
         {
-            ListConverter convert = new ListConverter();
-            Workouts = convert.ConvertListWID(await Processor.GetWorkout());
+            Workouts = ListConverter.ConvertListWID(await Processor.GetWorkout());
         }
 
         public void Delete()
         {
 
             Processor.DeleteWorkout(SelectedWorkout.ID);
-            //delete.DeletingWorkout(SelectedWorkout.ID);
             Workouts.Remove(SelectedWorkout);
         }
 

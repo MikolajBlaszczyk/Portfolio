@@ -37,7 +37,6 @@ namespace GymAppUI.ViewModels
         public void AddWorkout()
         {
             Processor.InsertWorkout(_SelectedDate, NameWorkout);
-            //input.TransferingWorkout(_SelectedDate, NameWorkout);
             _addEvent?.Invoke(this, null);
         }
     }
