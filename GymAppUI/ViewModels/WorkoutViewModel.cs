@@ -2,6 +2,7 @@
 using DataAccess;
 using GymAppUI.Helper;
 using GymAppUI.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,12 +60,11 @@ namespace GymAppUI.ViewModels
             training = new();
             Excercise = ListConverter.ConvertListE(await Processor.GetExcerciseName());
         }
-
         public void Add()
         {
-            CurrentTraining.Add(new ExcerciseTrainingModel() { Name = SelectedItem.Name }); ;
+            CurrentTraining.Add(new ExcerciseTrainingModel() { Name = SelectedItem.Name });
+            Log.Logger.Information("Added Excercise");
         }
-
         public async Task Delete()
         {
             training.Clear();
@@ -72,13 +72,14 @@ namespace GymAppUI.ViewModels
             var id = await Processor.GetWorkoutID();
             await Processor.DeleteWorkout(id.FirstOrDefault());
             _endOfWorkout?.Invoke(this, this);
+            Log.Logger.Information("Workout canceled");
         }
-
         public void Finish()
         {
             Processor.InsertWorkoutWithExcercise(CollectionConverter.CollectionToList(CurrentTraining));
             CurrentTraining.Clear();
             _endOfWorkout?.Invoke(this, this);
+            Log.Logger.Information("Workout finished");
         }
 
 

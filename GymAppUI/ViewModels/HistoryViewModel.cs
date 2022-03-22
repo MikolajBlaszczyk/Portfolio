@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataAccess;
+using Serilog;
 
 namespace GymAppUI.ViewModels
 {
@@ -50,14 +51,13 @@ namespace GymAppUI.ViewModels
             set { workouts = value; NotifyOfPropertyChange(() => Workouts); }
         }
 
-
-
         public HistoryViewModel(IDBProcessor processor, IListConverter listConverter, IConvertExcercise collectionConverter)
         {
             Processor = processor;
             ListConverter = listConverter;
             CollectionConverter = collectionConverter;
         }
+
         public async Task OnInitilize()
         {
             Workouts = ListConverter.ConvertListWID(await Processor.GetWorkout());
@@ -68,29 +68,44 @@ namespace GymAppUI.ViewModels
         }
         public async Task SelectionChanged()
         {
-            
-
             if (SelectedWorkout is not null)
             {
-                WorkoutInformationText = "Note was not give";
-                ExcerciseInformationText = "Excercise: ";
-                BindableCollection<ExcerciseTrainingModel> models = new();
-                var list = await Processor.GetExcerciseNameDuringSelectedWorkout(SelectedWorkout.ID);
-                models = ListConverter.ConvertListExcerciseModel(list);
-                foreach (var x in models)
+                try
                 {
-                    ExcerciseInformationText += $"{x.Name}, ";
+                    WorkoutInformationText = "Note was not give";
+                    ExcerciseInformationText = "Excercise: ";
+                    BindableCollection<ExcerciseTrainingModel> models = new();
+                    var list = await Processor.GetExcerciseNameDuringSelectedWorkout(SelectedWorkout.ID);
+                    models = ListConverter.ConvertListExcerciseModel(list);
+                    foreach (var x in models)
+                    {
+                        ExcerciseInformationText += $"{x.Name}, ";
+                    }
+                    Log.Logger.Information("Successful data taking");
+                }
+                catch (Exception ex)
+                {
+                    Log.Logger.Error(ex, "Could not get data from DB");
                 }
             }
-            
+
         }
         public void Delete()
         {
-            if ((Saved is null || SelectedWorkout.Name != Saved) && (SelectedWorkout is not null))
-            {
-                Processor.DeleteWorkout(SelectedWorkout.ID);
-                Workouts.Remove(SelectedWorkout);
-            }
+                try
+                {
+                    if (Saved is null || SelectedWorkout.Name != Saved)
+                    {
+                        Processor.DeleteWorkout(SelectedWorkout.ID);
+                        Workouts.Remove(SelectedWorkout);
+                        Log.Logger.Information("Successful delete");
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                Log.Logger.Error(ex, "SelectedWorkout is null");
+                }
         }
 
     }

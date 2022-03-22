@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Serilog;
+using Serilog.Core;
 
 namespace GymAppUI
 {
@@ -17,12 +19,18 @@ namespace GymAppUI
 
         public Bootstrapper()
         {
+           
             Initialize();
         }
 
         protected override void Configure()
         {
             _container.Instance(_container);
+
+            Log.Logger = new LoggerConfiguration()
+                 .WriteTo.Debug()
+                 .WriteTo.File("myApp.txt", rollingInterval: RollingInterval.Hour)
+                 .CreateLogger();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()

@@ -1,4 +1,4 @@
-﻿
+﻿using Serilog;
 using Caliburn.Micro;
 using DataAccess;
 using System;
@@ -38,26 +38,28 @@ namespace GymAppUI.ViewModels
             set { _nameWorkout = value; NotifyOfPropertyChange(() => NameWorkout); }
         }
 
-
-
         public AddViewModel(IDBProcessor processor)
         {
             Processor = processor;
-      
-
         }
-
 
         private void DatePicker_datePickedEvent(object sender, DateTime e)
         {
             _SelectedDate = e;
             _closeCalendarEvent?.Invoke(this, EventArgs.Empty);
         }
-
         public void AddWorkout()
         {
-            Processor.InsertWorkout(_SelectedDate, NameWorkout);
-            _addEvent?.Invoke(this, NameWorkout);
+            try
+            {
+                Processor.InsertWorkout(_SelectedDate, NameWorkout);
+                _addEvent?.Invoke(this, NameWorkout);
+                Log.Logger.Information("Success");
+            }
+            catch (Exception e)
+            {
+                Log.Logger.Error(e,"Workout wasn't added, exceptions occurred");
+            }
         }
         public void Calendar()
         {
