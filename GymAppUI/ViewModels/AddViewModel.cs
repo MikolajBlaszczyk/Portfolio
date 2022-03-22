@@ -15,7 +15,6 @@ namespace GymAppUI.ViewModels
     {
         public IDBProcessor Processor { get; }
 
-        
         public event EventHandler<string> _addEvent;
         public event EventHandler _datePicker;
         public event EventHandler _closeCalendarEvent;
@@ -52,9 +51,12 @@ namespace GymAppUI.ViewModels
         {
             try
             {
-                Processor.InsertWorkout(_SelectedDate, NameWorkout);
-                _addEvent?.Invoke(this, NameWorkout);
-                Log.Logger.Information("Success");
+                if (NameWorkout is not null)
+                {
+                    Processor.InsertWorkout(_SelectedDate, NameWorkout);
+                    _addEvent?.Invoke(this, NameWorkout);
+                    Log.Logger.Information("Success");
+                }
             }
             catch (Exception e)
             {
@@ -65,5 +67,6 @@ namespace GymAppUI.ViewModels
         {
             _datePicker?.Invoke(this,EventArgs.Empty);
         }
+        
     }
 }

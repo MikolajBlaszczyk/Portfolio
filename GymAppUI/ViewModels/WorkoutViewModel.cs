@@ -15,9 +15,6 @@ namespace GymAppUI.ViewModels
     public class WorkoutViewModel : Screen, IWorkoutViewModel
     {
         public event EventHandler<WorkoutViewModel> _endOfWorkout;
-
-       
-
         private BindableCollection<ExcerciseUIModel> excercise;
         private ExcerciseUIModel _selectedItem;
         private BindableCollection<ExcerciseTrainingModel> training;
@@ -69,8 +66,16 @@ namespace GymAppUI.ViewModels
         {
             training.Clear();
             SelectedItem = null;
-            var id = await Processor.GetWorkoutID();
-            await Processor.DeleteWorkout(id.FirstOrDefault());
+            try
+            {
+                var id = await Processor.GetWorkoutID();
+                await Processor.DeleteWorkout(id.FirstOrDefault());
+                
+            }
+            catch(Exception ex)
+            {
+                Log.Logger.Error(ex, "DB problem occurred");
+            }
             _endOfWorkout?.Invoke(this, this);
             Log.Logger.Information("Workout canceled");
         }
@@ -81,7 +86,5 @@ namespace GymAppUI.ViewModels
             _endOfWorkout?.Invoke(this, this);
             Log.Logger.Information("Workout finished");
         }
-
-
     }
 }

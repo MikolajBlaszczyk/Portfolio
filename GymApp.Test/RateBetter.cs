@@ -18,9 +18,9 @@ namespace GymApp.Test
         {
             List<Workout> workouts = new() 
             {
-                new Workout { Name="Deadlift", Count=3, Series=3 , Weight=120},
-                 new Workout { Name = "Deadlift", Count = 3, Series = 3, Weight = 120 },
-                  new Workout { Name = "Deadlift", Count = 3, Series = 3, Weight = 120 }
+                new Workout { Name="Deadlift", Count=3 , Weight=120},
+                 new Workout { Name = "Deadlift", Count = 3, Weight = 120 },
+                  new Workout { Name = "Deadlift", Count = 3, Weight = 120 }
             };
 
            var result = rate.RateWorkout(workouts);

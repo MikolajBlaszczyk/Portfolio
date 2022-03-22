@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Serilog;
 using Serilog.Core;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace GymAppUI
 {
@@ -31,10 +32,12 @@ namespace GymAppUI
                  .WriteTo.Debug()
                  .WriteTo.File("myApp.txt", rollingInterval: RollingInterval.Hour)
                  .CreateLogger();
-
+            
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
+
+            _container.Singleton<IMemoryCache, MemoryCache>();
 
             _container.PerRequest<IDBProcessor, DataProcessor>();
             _container.PerRequest<ISqlDataAccess, SqlDataAccess>();

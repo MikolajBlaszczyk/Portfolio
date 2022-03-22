@@ -54,14 +54,13 @@ namespace GymAppUI.ViewModels
             _workoutView._endOfWorkout += _workoutView__endOfWorkout;
 
         }
+        //events
         private void _dateView_datePickedEvent(object sender, DateTime e)
         {
             _addView._SelectedDate = e;
             ActivateItemAsync(_addView);
             Log.Logger.Information("Date was Picked");
         }
-
-        //events
         private void _addView__datePicker(object sender, EventArgs e)
         {
             ActivateItemAsync(_dateView);
@@ -83,7 +82,6 @@ namespace GymAppUI.ViewModels
             _historyView.Saved = null;
             Log.Logger.Information("End of workout");
         }
-        
         //buttons
         public void Homebtn()
         {
@@ -110,6 +108,15 @@ namespace GymAppUI.ViewModels
             ActivateItemAsync(_workoutView);
             _workoutView.OnInitilize();
             Log.Logger.Information("Workout button");
+        }
+        //dctor
+        ~ShellViewModel()
+        {
+            Log.CloseAndFlush();
+            _addView._addEvent -= _addView__addEvent;
+            _addView._datePicker -= _addView__datePicker;
+            _dateView.datePickedEvent -= _dateView_datePickedEvent;
+            _workoutView._endOfWorkout -= _workoutView__endOfWorkout;
         }
     }
 }
