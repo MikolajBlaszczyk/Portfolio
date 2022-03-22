@@ -7,13 +7,87 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="Lato"
+             FontSize="18">
     <UserControl.Resources>
         <Style TargetType="ScrollBar"  BasedOn="{StaticResource ScrollBarView}"/>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA"/>
+        <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#3D26A0DA"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
+        <Style x:Key="ListBoxItemContainerStyle1" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="4,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#FF15161B"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#FF15161B"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="white"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MainButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF0B0C0F"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF25262B"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
     </UserControl.Resources>
-    
-    <Grid Style="{StaticResource SwitchableContent}">
+
+    <Grid Style="{StaticResource SwitchableContent}" Background="#AA111213">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -39,9 +113,12 @@
                 <Border Grid.Row="0"
                         Grid.Column="2"
                         Grid.RowSpan="3"
-                        Width="120"
-                        
-                        Background="#FF1C1B23">
+                        Width="160"
+                        Background="#FF0B0C0F"
+                        >
+                    <Border.Effect>
+                        <DropShadowEffect Color="white" ShadowDepth="1" BlurRadius="8"/>
+                    </Border.Effect>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -52,12 +129,12 @@
                         </Grid.RowDefinitions>
                         <Button Content="Delete Workout"
                                 x:Name="Delete"
-                                Margin="10"
-                                Style="{StaticResource MainWorkoutButton}">
+                                
+                                Style="{StaticResource MainButton }">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border MinWidth="30"
-                                            Height="30"
+                                            Height="50"
                                             Background="{TemplateBinding Background}">
                                         <ContentPresenter HorizontalAlignment="Center"
                                                           VerticalAlignment="Center"/>
@@ -67,35 +144,41 @@
                         </Button>
                         <StackPanel Grid.Row="2"
                                     CanHorizontallyScroll="False">
-                            <Border Width="100"
-                                    Height="250"
-                                    Background="Transparent">
-                                <ListBox Background="Transparent"
-                                         ItemsSource="{Binding Path=Excercise}"
-                                         SelectedItem="{Binding Path=SelectedItem}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Name}"
-                                                       TextWrapping="Wrap"
-                                                       MaxWidth="80"
-                                                       Foreground="White"
-                                                       FontSize="14"/>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </Border>
+                            <ScrollViewer >
+                                <Border Width="200"
+                                        Height="250">
+                                    <ListBox ItemContainerStyle="{DynamicResource ListBoxItemContainerStyle1}" Background="Transparent"
+                                             ItemsSource="{Binding Path=Excercise}"
+                                             SelectedItem="{Binding Path=SelectedItem}">
+                                        <ListBox.Style>
+                                            <Style TargetType="ListBox">
+                                                <Setter Property="BorderThickness" Value="0"/>
+
+                                            </Style>
+                                        </ListBox.Style>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}"
+                                                           MaxWidth="200"
+                                                           Foreground="White"
+                                                           Margin="10,0,0,0"
+                                                           FontSize="16"/>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Border>
+                            </ScrollViewer>
                         </StackPanel>
                       
                         <Button x:Name="Add"
                                 Grid.Row="4"
                                 Content="Add Excercise"
-                                Margin="10"
-                                Style="{StaticResource MainWorkoutButton}"
+                                Style="{StaticResource MainButton}"
                                 >
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border MinWidth="30"
-                                            MinHeight="30"
+                                            MinHeight="50"
                                             Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
                                                           HorizontalAlignment="Center"/>
@@ -109,6 +192,7 @@
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="30"/>
@@ -118,29 +202,72 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                   
                     
-                    <Grid Grid.Row="1"
-                              Grid.Column="1">
-                        <ScrollViewer>
-                          
-                        <DataGrid ItemsSource="{Binding Path=ThisTraining}"
+                    
+                    <Grid Grid.Row="2"
+                          Grid.Column="1">
+                        
+
+                            <DataGrid ItemsSource="{Binding Path=CurrentTraining}"
                               SelectedItem="{Binding Path=Selected}"
                             
                               
                               Style="{StaticResource DataGridStyleExcercise}"
                               CellStyle="{StaticResource DataGridCellStyleExcercise}"
                               RowStyle="{StaticResource DataGridRowStyleExcercise}"
-                              ColumnHeaderStyle="{StaticResource DataGridColumnStyleExcercise}"
+                              ColumnHeaderStyle="{StaticResource  DataGridColumnHeaders}"
                               RowHeaderStyle="{StaticResource DataGridRowHeaderStyleExcercise}">
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn>
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                            
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                            <Border Background="white"
+                                                            Padding="5" CornerRadius="10">
+                                                <TextBox  Text="{Binding Path=Name}" VerticalAlignment="Center"
+                                                          Margin="10" MinWidth="50">
+                                                    <TextBox.Style>
+                                                        <Style TargetType="TextBox">
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                            <Setter Property="TextAlignment" Value="Center"/>
+                                                        </Style>
+                                                    </TextBox.Style>
+                                                </TextBox>
+                                            </Border>
+                                            
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                    <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                                            Background="white"
+                                                            Padding="5" CornerRadius="10">
+                                                        <TextBox  Text="{Binding Path=Weight,Mode=TwoWay}"
+                                                         VerticalAlignment="Center" Margin="10" MinWidth="50">
+                                                            <TextBox.Style>
+                                                                <Style TargetType="TextBox">
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="TextAlignment" Value="Center"/>
+                                                                </Style>
+                                                            </TextBox.Style>
+                                                        </TextBox>
+                                                    </Border>
+                                                   
+                                                    </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -154,73 +281,35 @@
                                                     <RowDefinition/>
                                                 </Grid.RowDefinitions>
 
-                                                <TextBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=Weight,Mode=TwoWay}"
-                                                     VerticalAlignment="Center" Width="30" Margin="10" MinWidth="50"/>
-                                                <!--<Button  Grid.Row="0" Grid.Column="1"  Content="U">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Click">
-                                                        <cal:ActionMessage MethodName="UppW"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </Button>
-                                            <Button  Grid.Row="1" Grid.Column="1"  Content="D">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Click">
-                                                        <cal:ActionMessage MethodName="DownW"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </Button>-->
-                                            </Grid>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn>
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition/>
-                                                    <ColumnDefinition/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-
-                                                <TextBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Path=Count, Mode=TwoWay}" 
-                                                     VerticalAlignment="Center"  MinWidth="50"/>
-                                                <!--<Button  Grid.Row="0" Grid.Column="1"  Content="U">
-                                                -->
-                                                <!--<i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Click">
-                                                        <cal:ActionMessage MethodName="UppC"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </Button>
-                                            <Button  Grid.Row="1" Grid.Column="1"  Content="D">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Click">
-                                                        <cal:ActionMessage MethodName="DownC"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>-->
-                                                <!--
-                                            </Button>-->
+                                                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                                            Background="white"
+                                                            Padding="5" CornerRadius="10">
+                                                    <TextBox   Text="{Binding Path=Count, Mode=TwoWay}" 
+                                                         VerticalAlignment="Center"  MinWidth="50">
+                                                        <TextBox.Style>
+                                                            <Style TargetType="TextBox">
+                                                                <Setter Property="BorderThickness" Value="0"/>
+                                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                            </Style>
+                                                        </TextBox.Style>
+                                                    </TextBox>
+                                                </Border>
                                             </Grid>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        </ScrollViewer>
+                        
                     </Grid>
                     
                     
 
-                    <Button x:Name="Finish" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Finish Workout"
+                    <Button x:Name="Finish" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Finish Workout"
                             Style="{StaticResource Accept Button}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="100"
+                                <Border Width="130"
                                         Height="40"
                                         CornerRadius="15"
                                         Background="{TemplateBinding Background}">

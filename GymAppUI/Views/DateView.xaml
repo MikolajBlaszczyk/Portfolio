@@ -127,7 +127,7 @@
                             </VisualStateManager.VisualStateGroups>
                             <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="1">
                                 <Border BorderThickness="0" BorderBrush="#00FFFFFF" CornerRadius="1">
-                                    <Grid Background="#FF2C3451">
+                                    <Grid Background="#FF111213">
                                         <Grid.Resources>
                                             <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
                                                 <Grid Cursor="Hand" Margin="0">
@@ -138,7 +138,7 @@
                                                             <VisualState x:Name="Disabled"/>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Rectangle Fill="#FF2C3451" Opacity="1"  />
+                                                    <Rectangle Fill="#FF111213" Opacity="1"  />
                                                     <Grid>
                                                         <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="#FFF3EFF5" HorizontalAlignment="Left" Height="20" Margin="20,0,5,0" Stretch="Fill" VerticalAlignment="Center" Width="12"/>
                                                     </Grid>
@@ -153,14 +153,14 @@
                                                             <VisualState x:Name="Disabled"/>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Rectangle Fill="#FF2C3451" Opacity="1"  />
+                                                    <Rectangle Fill="#FF111213" Opacity="1"  />
                                                     <Grid>
                                                         <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="#FFF3EFF5" HorizontalAlignment="Left" Height="20" Margin="5,0,20,0" Stretch="Fill" VerticalAlignment="Center" Width="12"/>
                                                     </Grid>
                                                 </Grid>
                                             </ControlTemplate>
                                             <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
-                                                <Grid Cursor="Hand"  Background="#FF2C3451">
+                                                <Grid Cursor="Hand"  Background="#FF111213">
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="Normal"/>
@@ -353,13 +353,13 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="TodayBackground" Fill="#FF4C69A8" Opacity="0" RadiusX="1" RadiusY="1"/>
-                            <Rectangle x:Name="SelectedBackground" Fill="#FF3D5289" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="TodayBackground" Fill="Black" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="SelectedBackground" Fill="#FF575757" Opacity="0" RadiusX="1" RadiusY="1"/>
                             <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"/>
-                            <Rectangle x:Name="HighlightBackground" Fill="#FF323C7A" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="HighlightBackground" Fill="#FF575757" Opacity="0" RadiusX="1" RadiusY="1"/>
                             <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FFF3EFF5" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
-                            <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="#FF45D6FA" Visibility="Collapsed"/>
+                            <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="Black" Visibility="Collapsed"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -386,10 +386,10 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="#660D111B">
+    <Grid Background="#AA111213">
 
 
-        <Grid Grid.Row="0" Grid.Column="1" Background="#AA191D29">
+        <Grid Grid.Row="0" Grid.Column="1" Background="#AA111213">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="50"/>
                 <ColumnDefinition />
@@ -441,7 +441,7 @@
                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding DateText}"
                            FontSize="30"
                            FontFamily="Lato"
-                           Foreground="#FF80B1F5"
+                           Foreground="White"
                            TextAlignment="Left"
                            Margin="0,10,15,0"
                             Padding="30,0,0,0"

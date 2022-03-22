@@ -24,12 +24,12 @@
             
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#FF2C3451"/>
-                    <Setter Property="BorderBrush" Value="#FF0D0119"/>
+                    <Setter Property="Background" Value="#FFC8CBD3"/>
+                    <Setter Property="BorderBrush" Value="#FF000230"/>
                     <Setter Property="BorderThickness" Value="0,2,0,2"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF2C3451"/>
+                    <Setter Property="Background" Value="#FFC8CBD3"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -37,11 +37,13 @@
             <Setter Property="Margin" Value="10"/>
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#FF2C3451"/>
+                    <Setter Property="Background" Value="#FFC8CBD3"/>
+                    <Setter Property="Foreground" Value="black"/>
                     <Setter Property="BorderThickness" Value="0"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF2C3451"/>
+                    <Setter Property="Background" Value="#FFC8CBD3"/>
+                    <Setter Property="Foreground" Value="black"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -50,7 +52,7 @@
 
 
 
-    <Grid >
+    <Grid  Background="#AA111213">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition/>
@@ -80,7 +82,7 @@
                 </Grid.RowDefinitions>
                 <Grid.Style>
                     <Style TargetType="Grid">
-                        <Setter Property="Background" Value="#FF161E2B"/>
+                        <Setter Property="Background" Value="#FF111213"/>
                     </Style>
                 </Grid.Style>
 

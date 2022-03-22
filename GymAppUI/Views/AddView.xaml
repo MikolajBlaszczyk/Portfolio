@@ -18,7 +18,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="Transparent">
+    <Grid Background="#AA111213">
 
 
         <ContentControl>
@@ -26,7 +26,7 @@
                 VerticalAlignment="Center" Height="400">
             <Border.Style>
                 <Style TargetType="Border">
-                        <Setter Property="Background" Value="#FF161E2B"/>
+                        
                         <Setter Property="Margin" Value="20"/>
                         
                     </Style>
@@ -52,7 +52,7 @@
                     
                 
                 <!--endStyle-->
-                    <Border  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Background="#FF242E47" Padding="10">
+                    <Border  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Background="#FF17191F" Padding="10">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="15" ShadowDepth="1" Color="white"/>
                         </Border.Effect>
@@ -93,7 +93,7 @@
                 </Border>
 
 
-                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF242E47" 
+                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF17191F" 
                             Margin="0,30,0,10" Padding="10">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="15" ShadowDepth="1" Color="white"/>
@@ -115,7 +115,7 @@
                         </Label>
                         <Button x:Name="Calendar" Grid.Column="2"  Grid.Row="2" Style="{StaticResource Calendar}" >
                             <Button.Content>
-                                <Image Style="{StaticResource ImageStyle}"/>
+                                <Image Style="{StaticResource ImageStyle}" RenderOptions.BitmapScalingMode="Fant"/>
                             </Button.Content>
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
@@ -136,16 +136,16 @@
                         </Button>
                         <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                            Height="40"
-                           Margin="30,0,15,15"
+                           Margin="60,10,15,15"
                            Text="{Binding Date}"
-                           Foreground="#FF80B1F5"
+                           Foreground="#FFC3C4D6"
                            FontSize="25">
 
                         </TextBlock>
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF242E47" Margin="0,30,0,0">
+                    <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF17191F" Margin="0,30,0,0">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="15" ShadowDepth="1" Color="white"/>
                         </Border.Effect>

@@ -9,8 +9,9 @@
         Height="700" 
         Width="800"
         WindowStyle="None"
-        ResizeMode="NoResize">
-    <Grid Background="#FF1D2332">
+        ResizeMode="NoResize"
+        SnapsToDevicePixels="False">
+    <Grid Background="#FF101115">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -30,13 +31,8 @@
         <!--BAR Grid-->
         <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Panel.ZIndex="4"
                 >
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#E5121927" Offset="0.7"/>
-                    <GradientStop Color="#C5121927" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid   Background="#E5121927"   Panel.ZIndex="1" MinHeight="50" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
+            <Grid   Background="#FF121217"   Panel.ZIndex="1" MinHeight="45" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="Auto" />
@@ -46,12 +42,12 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <!--Bar-->
-            <Button Grid.Column="4" Style="{StaticResource BarButton}" Content="_" Click="Button_Click"  >
+            <Button Grid.Column="4" Style="{StaticResource BarButton}" Content="_" Click="Button_Click"  VerticalAlignment="Stretch" >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Width="35"
-                                    Height="35"
-                                    CornerRadius="15"
+                                   
+                                    
                                     Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"/>
@@ -59,12 +55,12 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Column="5" Style="{StaticResource BarButton}" Content="X" Click="Button_Click_1" >
+            <Button Grid.Column="5" Style="{StaticResource BarButton}" Content="X" Click="Button_Click_1" VerticalAlignment="Stretch" >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Width="35"
-                                    Height="35"
-                                    CornerRadius="15"
+                                    
+                                    
                                     Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"/>
@@ -78,7 +74,7 @@
         <!--BAR Grid-->
 
         <!--Nav-->
-        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"  Background="#FF1D2332" >
+        <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"  Background="#FF121217"  Panel.ZIndex="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -89,15 +85,18 @@
             </Grid.RowDefinitions>
 
             <!--Upper Home Button-->
-            <Button x:Name="Homebtn" Grid.Row="0" Grid.Column="0"   Style="{StaticResource MenuButton}" >
+            <Button x:Name="Homebtn" Grid.Row="0" Grid.Column="0"   Style="{StaticResource MenuButton}" HorizontalAlignment="Stretch" >
                 <Button.Content>
-                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\arrow-right-to-bracket.png" Width="30" Height="30"/>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\arrow-right-to-bracket.png"
+                           Width="30"
+                           Height="30"
+                           RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Content>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border MinWidth="60"
                             MinHeight="50"
-                            CornerRadius="15" 
+                             
                             Background="{TemplateBinding Background}"
                             >
                             <ContentPresenter HorizontalAlignment="Center"
@@ -111,18 +110,19 @@
             <!--Upper Home Button-->
             
             <!--Bottom Buttons-->
-            <Button x:Name="Addbtn" Grid.Row="2"  Style="{StaticResource MenuButton}" Panel.ZIndex="6">
+            <Button x:Name="Addbtn" Grid.Row="2"  Style="{StaticResource MenuButton}" Panel.ZIndex="6" HorizontalAlignment="Stretch">
                 <Button.Content>
-                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\paste.png"/>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\paste.png"
+                           RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Content>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border MinWidth="130"
-                                MaxWidth="150"
+                                
                                     MinHeight="50"
                                 MaxHeight="70"
                                 Padding="10"
-                                    CornerRadius="15" 
+                                     
                                     Background="{TemplateBinding Background}">
 
                             <ContentPresenter HorizontalAlignment="Center"
@@ -131,9 +131,10 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="Historybtn" Grid.Row="3" Style="{StaticResource MenuButton}"   >
+            <Button x:Name="Historybtn" Grid.Row="3" Style="{StaticResource MenuButton}"   HorizontalAlignment="Stretch">
                 <Button.Content>
-                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\book.png"/>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\book.png"
+                           RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Content>
                     <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -142,7 +143,7 @@
                                     MinHeight="50"
                                 MaxHeight="70"
                                 Padding="10"
-                                    CornerRadius="15" 
+                                    
                                     Background="{TemplateBinding Background}">
 
                             <ContentPresenter HorizontalAlignment="Center"
@@ -151,9 +152,10 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="Workoutbtn" Grid.Row="4" Style="{StaticResource MenuButton}" Margin="10,10,10,20" >
+            <Button x:Name="Workoutbtn" Grid.Row="4" Style="{StaticResource MenuButton}"  HorizontalAlignment="Stretch">
                 <Button.Content>
-                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\circle-play.png"/>
+                    <Image Source="D:\repository\ProjectOne\GymAppUI\Fonts\circle-play.png"
+                           RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Content>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -162,7 +164,6 @@
                                     MinHeight="50"
                                 MaxHeight="70"
                                 Padding="10"
-                                    CornerRadius="15" 
                                     Background="{TemplateBinding Background}">
 
                             <ContentPresenter HorizontalAlignment="Center"
@@ -179,7 +180,7 @@
         <!--strips-->
         <Grid   Grid.ColumnSpan="2" 
                
-                Grid.RowSpan="5" Margin="0,-100,-400,-10" Panel.ZIndex="0" Grid.Column="2">
+                Grid.RowSpan="5" Margin="0,-100,-400,-90" Panel.ZIndex="0" Grid.Column="2">
             <Grid.RenderTransform>
                 <RotateTransform Angle="55"/>
             </Grid.RenderTransform>
@@ -194,19 +195,19 @@
                                     
                             MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FF7175A8"
+                                    Background="#FF212325"
                                     Margin="-120,0,-90,580"
                                     />
                     <Border MinWidth="500"
                                     MaxHeight="35"
                             
                                     CornerRadius="20"
-                                    Background="#FF11131D"
+                                    Background="#FF4A4B51"
                                     Margin="-190,0,-100,480"/>
                     <Border MinWidth="500"
                                     MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FF343747"
+                                    Background="#FFC7C0CD"
                                     Margin="-250,10,-100,380"/>
                 </Grid>
 
@@ -215,19 +216,19 @@
                                     
                                     MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FF7175A8"
+                                    Background="#FF212325"
                                     Margin="50,0,-500,580"/>
                     <Border MinWidth="543"
                                     MaxHeight="35"
                             
                                     CornerRadius="20"
-                                    Background="#FF11131D"
+                                    Background="#FF4A4B51"
                                     Margin="60,10,-510,480"/>
                     <Border MinWidth="511"
                                     MaxHeight="35"
                                     
                                     CornerRadius="20"
-                                    Background="#FF343747"
+                                    Background="#FFC7C0CD"
                                     Margin="60,20,-500,380"/>
                 </Grid>
             </Grid>
@@ -239,7 +240,7 @@
                 <RotateTransform Angle="55"/>
             </Grid.RenderTransform>
 
-            <Grid Margin="-70,-600,-10,-10" MinWidth="700">
+            <Grid Margin="-170,-500,-10,-10" MinWidth="700">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -249,19 +250,19 @@
                                     
                             MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FFA5A9D4"
+                                    Background="#FF212325"
                                     Margin="-120,0,-130,580"
                                     />
                     <Border MinWidth="500"
                                     MaxHeight="35"
                             
                                     CornerRadius="20"
-                                    Background="#FF11131D"
+                                    Background="#FF4A4B51"
                                     Margin="-190,0,-140,480"/>
                     <Border MinWidth="500"
                                     MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FF343747"
+                                    Background="#FFC7C0CD"
                                     Margin="-250,10,-140,380"/>
                 </Grid>
 
@@ -270,24 +271,24 @@
                                     
                                     MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FFA5A9D4"
+                                    Background="#FF212325"
                                     Margin="100,0,-500,580"/>
                     <Border MinWidth="543"
                                     MaxHeight="35"
                             
                                     CornerRadius="20"
-                                    Background="#FF11131D"
+                                    Background="#FF4A4B51"
                                     Margin="100,10,-510,480"/>
                     <Border MinWidth="511"
                                     MaxHeight="35"
                                     
                                     CornerRadius="20"
-                                    Background="#FF343747"
+                                    Background="#FFC7C0CD"
                                     Margin="100,20,-500,380"/>
                 </Grid>
             </Grid>
         </Grid>
-        <Grid   Grid.ColumnSpan="2" Opacity="0.1" 
+        <!--<Grid   Grid.ColumnSpan="2" Opacity="0.1" 
                
                 Grid.RowSpan="5" Margin="0,-100,-400,-30" Grid.Column="2">
             <Grid.RenderTransform>
@@ -304,19 +305,19 @@
                                    
                             MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FFA5A9D4"
+                                    Background="#FFD9DBEE"
                                     Margin="-100,0,40,580"
                                     />
                     <Border MinWidth="500"
                                     MaxHeight="35"
                             
                                     CornerRadius="20"
-                                    Background="#FF11131D"
+                                    Background="Black"
                                     Margin="-190,0,40,480"/>
                     <Border MinWidth="500"
                                     MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FF343747"
+                                    Background="#FF292A32"
                                     Margin="-250,10,40,380"/>
                 </Grid>
 
@@ -325,23 +326,23 @@
                                     
                                     MaxHeight="35"
                                     CornerRadius="20"
-                                    Background="#FFA5A9D4"
+                                    Background="#FFD9DBEE"
                                     Margin="-80,0,-500,580"/>
                     <Border MinWidth="543"
                                     MaxHeight="35"
                             
                                     CornerRadius="20"
-                                    Background="#FF11131D"
+                                    Background="Black"
                                     Margin="-80,10,-510,480"/>
                     <Border MinWidth="511"
                                     MaxHeight="35"
                                     
                                     CornerRadius="20"
-                                    Background="#FF343747"
+                                    Background="#FF292A32"
                                     Margin="-80,20,-500,380"/>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid>-->
         <!--strips-->
 
         <!--ViewModels-->

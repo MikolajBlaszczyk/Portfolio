@@ -18,7 +18,7 @@ namespace GymAppUI.ViewModels
         private readonly IDateViewModel _dateView;
         //to view
         private bool canAdd = true;
-        private bool CanWorkout = false;
+        private bool CanWorkout = true;
         private bool canHistory = true;
 
         public bool CanHistorybtn
