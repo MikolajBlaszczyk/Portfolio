@@ -48,6 +48,16 @@ namespace GymAppUI.Helper
             return output;
         }
 
-        
+        public BindableCollection<ExcerciseTrainingModel> ConvertListExcerciseModel(List<ExcerciseModel> input)
+        {
+            BindableCollection<ExcerciseTrainingModel> output = new BindableCollection<ExcerciseTrainingModel>();
+
+            foreach (var item in input)
+            {
+                output.Add(new ExcerciseTrainingModel() { Name = item.ExcerciseName});
+            }
+
+            return output;
+        }
     }
 }

@@ -10,7 +10,9 @@ namespace GymAppUI.ViewModels
         string NameWorkout { get; set; }
         IDBProcessor Processor { get; }
 
+      
         event EventHandler<string> _addEvent;
+        event EventHandler _datePicker;
 
         void AddWorkout();
     }

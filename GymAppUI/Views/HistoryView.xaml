@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymAppUI.Views" 
-
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
@@ -63,12 +62,10 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
+       
         <Border Grid.Row="1" Grid.Column="1">
             <Border.Style>
                 <Style TargetType="Border">
-                    <Setter Property="BorderBrush" Value="#FF0F1627"/>
-                    <Setter Property="BorderThickness" Value="10"/>
-                    <Setter Property="CornerRadius" Value="5"/>
                     <Setter Property="Margin" Value="10"/>
                 </Style>
             </Border.Style>
@@ -77,6 +74,7 @@
             </Border.Effect>
             <Grid >
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
@@ -86,7 +84,33 @@
                     </Style>
                 </Grid.Style>
 
-                <DataGrid x:Name="Fabalaba" ItemsSource="{Binding Path=Workouts}">
+                <Button x:Name="Delete"
+                        Grid.Row="0" Content="X" 
+                        HorizontalAlignment="Right" 
+                        Style="{StaticResource DeleteButton}"
+                        Margin="10">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="70"
+                                    Height="30"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+
+
+                <DataGrid x:Name="Fabalaba" ItemsSource="{Binding Path=Workouts}"
+                          Grid.Row="1" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedCellsChanged">
+                            <cal:ActionMessage MethodName="SelectionChanged" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <DataGrid.Style>
                         <Style TargetType="DataGrid">
                             <Setter Property="Background" Value="Transparent"/>
@@ -100,46 +124,28 @@
                             <Setter Property="CanUserAddRows" Value="False"/>
                             <Setter Property="SelectedItem" Value="{Binding Path=SelectedWorkout}"/>
                             <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
-                           
+                            <Setter Property="Width" Value="auto"/>
                         </Style>
                     </DataGrid.Style>
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
-
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock x:Name="bind" Text="{Binding Name}" Padding="0,0,20,0" Width="200" FontSize="22"/>
-                                        <TextBlock Text="{Binding Date}" Width="200" FontSize="22"/>
-                                        <Button x:Name="Delete" Content="X" 
-                                                Style="{StaticResource DeleteButton}" 
-                                                Margin="80,0,20,0" >
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <cal:ActionMessage MethodName="Delete"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border Width="30"
-                                                            Height="30"  
-                                                            CornerRadius="5"
-                                                            Background="{TemplateBinding Background}">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </StackPanel>
-
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock x:Name="bind" Text="{Binding Name}" Grid.Column="0" TextAlignment="Left"  Padding="20,0,20,0" FontSize="22"/>
+                                        <TextBlock Text="{Binding Date}" Grid.Column="1" TextAlignment="Right" FontSize="22" Margin="20,0,0,0"/>
+                                    </Grid>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <Border Grid.Row="1" BorderThickness="0"
+                <Border Grid.Row="2" BorderThickness="0"
                         Margin="0" Padding="20,30,0,30">
                     <Grid >
                         <Grid.RowDefinitions>
@@ -147,8 +153,8 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Style="{StaticResource History_TextBlock}"  Grid.Row="0" Text="Some Information about workout"/>
-                        <TextBlock Style="{StaticResource History_TextBlock}"  Grid.Row="1" Text="Excercises"/>
+                        <TextBlock Style="{StaticResource History_TextBlock}"  Grid.Row="0" Text="{Binding WorkoutInformationText}"/>
+                        <TextBlock Style="{StaticResource History_TextBlock}"  Grid.Row="1" Text="{Binding ExcerciseInformationText}"/>
                         <TextBlock Style="{StaticResource History_TextBlock}"  Grid.Row="2" Text="How many stars"/>
                     </Grid>
                 </Border>

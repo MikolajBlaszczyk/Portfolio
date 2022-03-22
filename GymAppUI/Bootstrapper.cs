@@ -36,6 +36,7 @@ namespace GymAppUI
             _container.PerRequest<IWorkoutViewModel, WorkoutViewModel>();
             _container.PerRequest<IListConverter, ListConverter>();
             _container.PerRequest<IConvertExcercise, ConvertExcercise>();
+            _container.PerRequest<IDateViewModel, DateViewModel>();
 
             GetType().Assembly.GetTypes()
                .Where(type => type.IsClass)

@@ -65,13 +65,13 @@
                 </Style.Triggers>
             </Style>
             <Style TargetType="Button" x:Key="InsertButton">
-                <Setter Property="Background" Value="#FF0C1342"/>
-                <Setter Property="Foreground" Value="#FFF3EFF5"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="black"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="5"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#FF202080"/>
+                        <Setter Property="Background" Value="#FF277A8D"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -246,12 +246,33 @@
             
             <!--History View Info grid-->
             <Style TargetType="TextBlock" x:Key="History_TextBlock">
-                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontSize" Value="25"/>
                 <Setter Property="Foreground" Value="#FFF1EEEE"/>
                 <Setter Property="Margin" Value="0,0,0,10"/>
                 
                 <Setter Property="FontFamily" Value="Lato"/>
                 
+            </Style>
+            
+            <!--Subbmit Button Date-->
+            <Style TargetType="Button" x:Key="Subbmit_Date">
+                <Setter Property="Background" Value="white"/>
+                <Setter Property="FontFamily" Value="Lato"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#22FFFFFF"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--Calendar button-->
+            <Style TargetType="Button" x:Key="Calendar">
+                <Setter Property="Background" Value="#CCFFFFFF"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#AA7570AE"/>
+                    </Trigger>
+                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -11,5 +11,6 @@ namespace GymAppUI.Helper
         BindableCollection<ExcerciseUIModel> ConvertListE(List<ExcerciseNameModel> names);
         BindableCollection<WorkoutUIModel> ConvertListW(List<WorkoutModel> workouts);
         BindableCollection<WorkoutModelUIWithID> ConvertListWID(List<WorkoutModel> input);
+        BindableCollection<ExcerciseTrainingModel> ConvertListExcerciseModel(List<ExcerciseModel> input);
     }
 }

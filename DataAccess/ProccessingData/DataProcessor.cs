@@ -42,6 +42,12 @@ namespace DataAccess
             var output = _dataAccess.GetDataAsync<int, dynamic>(cmd, new { });
             return output;
         }
+        public async Task<List<ExcerciseModel>> GetExcerciseNameDuringSelectedWorkout(int workoutID)
+        {
+            string cmd = "exec [dbo].[spWorkoutExcercise_GetWorkout] @WorkoutID";
+            var output =  await _dataAccess.GetDataAsync<ExcerciseModel, dynamic>(cmd, new { WorkoutID = workoutID });
+            return output;
+        }
         public async Task DeleteExcercise(int id)
         {
             await _dataAccess.GiveDataAsync("exec [dbo].[spDeleteWorkoutExcercise] @WorkoutID", new { WorkoutID = id });

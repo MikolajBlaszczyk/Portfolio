@@ -3,8 +3,10 @@ using Caliburn.Micro;
 using DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GymAppUI.ViewModels
@@ -13,10 +15,18 @@ namespace GymAppUI.ViewModels
     {
         public IDBProcessor Processor { get; }
 
+        
         public event EventHandler<string> _addEvent;
+        public event EventHandler _datePicker;
+        public event EventHandler _closeCalendarEvent;
+
         private string _nameWorkout;
         private DateTime _date = DateTime.Now;
 
+        public string Date 
+        {
+            get{ return _SelectedDate.ToShortDateString(); }
+        }
         public DateTime _SelectedDate
         {
             get { return _date; }
@@ -33,12 +43,25 @@ namespace GymAppUI.ViewModels
         public AddViewModel(IDBProcessor processor)
         {
             Processor = processor;
+      
+
         }
+
+
+        private void DatePicker_datePickedEvent(object sender, DateTime e)
+        {
+            _SelectedDate = e;
+            _closeCalendarEvent?.Invoke(this, EventArgs.Empty);
+        }
+
         public void AddWorkout()
         {
             Processor.InsertWorkout(_SelectedDate, NameWorkout);
-         
             _addEvent?.Invoke(this, NameWorkout);
+        }
+        public void Calendar()
+        {
+            _datePicker?.Invoke(this,EventArgs.Empty);
         }
     }
 }

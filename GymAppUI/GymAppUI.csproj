@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="7.10.0" />
   </ItemGroup>
 
   <ItemGroup>

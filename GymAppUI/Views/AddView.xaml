@@ -5,160 +5,189 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymAppUI.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="600"
+             SnapsToDevicePixels="True"
+             >
     <UserControl.Resources>
-        <Style TargetType="DatePicker">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
+        <Style TargetType="Image" x:Key="ImageStyle">
+            <Setter Property="Source" Value="D:\repository\ProjectOne\GymAppUI\Fonts\calendar.png"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="60"/>
+
 
         </Style>
-        <Style TargetType="DatePickerTextBox">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-
-            <Setter Property="IsEnabled" Value="False"/>
-            <Setter Property="MinWidth" Value="150"/>
-
-        </Style>
-
-
-        <Style x:Key="CalendarSTYYLE" TargetType="Calendar">
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="Foreground" Value="AliceBlue"/>
-            <!--<Setter Property="CalendarButtonStyle">
-                <Setter.Value>
-                    <Style TargetType="CalendarButton">
-                        <Setter Property="FontSize" Value="16"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>-->
-        </Style>
-
-
-
     </UserControl.Resources>
 
     <Grid Background="Transparent">
 
-        
 
-        <Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+        <ContentControl>
+        <Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"
+                VerticalAlignment="Center" Height="400">
             <Border.Style>
                 <Style TargetType="Border">
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="BorderBrush" Value="#FF0D1019"/>
-                    <Setter Property="CornerRadius" Value="10"/>
-                    <Setter Property="Background" Value="#FF121219"/>
-                    <Setter Property="Padding" Value="40"/>
-                    <Setter Property="MinWidth" Value="500"/>
-                    <Setter Property="MinHeight" Value="250"/>
-                </Style>
+                        <Setter Property="Background" Value="#FF161E2B"/>
+                        <Setter Property="Margin" Value="20"/>
+                        
+                    </Style>
             </Border.Style>
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="White" />
-            </Border.Effect>
+            
             <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" CornerRadius="10"  Margin="0,10"   Background="#FFB1B5D6">
-                    <Grid>
-                            
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                <!--Style-->
+                    
+                
+                <!--endStyle-->
+                    <Border  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Background="#FF242E47" Padding="10">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Color="white"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="1" 
+                                   Grid.Column="0"
+                                   FontSize="25"
+                                   Margin="10,0,10,0"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Foreground="white"
+                                   >    
+                                Workout Name
+                            </Label>
+                            <Border Grid.Row="1" Grid.Column="2" CornerRadius="10"  Margin="0,10"   Background="#FFE9EAF0" MaxWidth="250">
+                                <Grid>
+                                    <TextBox  x:Name="NameWorkout">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Setter Property="MinWidth" Value="150"/>
+                                                <Setter Property="Padding" Value="10,5,0,0"/>
+                                                <Setter Property="Margin" Value="0,0,0,10"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="Foreground" Value="#FF171717"/>
 
-                        <Label Grid.Column="0"  Content="Workout Name" Foreground="#FF171717" FontSize="16" FontFamily="Lato Semibold"
-                               BorderThickness="0,0,2,0" BorderBrush="black"/>
-                        <TextBox Grid.Column="1" x:Name="NameWorkout">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="MinWidth" Value="100"/>
-                                    <Setter Property="Padding" Value="0,5,0,0"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                    <Setter Property="Foreground" Value="#FF171717"/>
-                                    
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                    </Grid>
-                </Border>
-
-                <Border Grid.Row="1" CornerRadius="10"  Background="#FFB1B5D6" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Pick a Date"  Foreground="#FF171717" FontSize="16" Margin="0,0,140,0" FontFamily="Lato Semibold"
-                               BorderThickness="0,0,2,0" BorderBrush="black" Padding="10,4.5,28.5,0" />
-                        <DatePicker Grid.Column="1" SelectedDate="{Binding Path=_SelectedDate}"
-                                    FontSize="16" BorderBrush="{x:Null}"
-                                    CalendarStyle="{StaticResource CalendarSTYYLE}">
-
-
-                        </DatePicker>
-                    </Grid>
-                    <!--<Label  Content="Date" Foreground="#FF171717" FontSize="16" FontFamily="Lato Semibold"/>-->
-                    <!--<TextBox x:Name="SelectedDate">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="MinWidth" Value="150"/>
-                                    <Setter Property="Margin" Value="0,5,0,0"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                    <Setter Property="Foreground" Value="#FF171717"/>
-                                    
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>-->
-
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+                        </Grid>
                 </Border>
 
 
-                <Button x:Name="AddWorkout" Grid.Row="2" Content="Add"
-                        Style="{StaticResource InsertButton}">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border MinWidth="130"
+                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF242E47" 
+                            Margin="0,30,0,10" Padding="10">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Color="white"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width=" auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                       
+                        <Label  Grid.Column="0"
+                           FontSize="25"
+                            Margin="10,0,10,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Foreground="white">
+                            Date Picker
+                        </Label>
+                        <Button x:Name="Calendar" Grid.Column="2"  Grid.Row="2" Style="{StaticResource Calendar}" >
+                            <Button.Content>
+                                <Image Style="{StaticResource ImageStyle}"/>
+                            </Button.Content>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="70"
+                                        Height="70"
+                                        Margin="0,0,30,0"
+                                        
+                                        HorizontalAlignment="Right"
+                                        
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                      VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                           Height="40"
+                           Margin="30,0,15,15"
+                           Text="{Binding Date}"
+                           Foreground="#FF80B1F5"
+                           FontSize="25">
+
+                        </TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF242E47" Margin="0,30,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Color="white"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0"
+                           FontSize="25"
+                            Margin="10,0,10,0"
+                                    Padding="10,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Foreground="white">
+                                Confirm
+                            </Label>
+                            <Button x:Name="AddWorkout"  Grid.Column="1"  Content="Add"
+                        Style="{StaticResource Calendar}" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border MinWidth="130"
                                     MinHeight="50"
-                                    Margin="0,40,0,0"
+                                    Margin="0,20,0,20"
                                     CornerRadius="8"
                                     Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center"
+                                            <ContentPresenter VerticalAlignment="Center"
                                                   HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
 
+                        </Grid>
+                        
+                    </Border>
 
-
+                  
+                   
             </Grid>
-           
-        </Border>
-
-        <!--row 1-->
-        <!--
-        <TextBox x:Name="NameWorkout" Grid.Row="1" Grid.Column="1" Text="Give a name" Grid.ColumnSpan="2" Margin="15,0,15,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
-        
-        -->
-        <!--row 2-->
-        <!--
-        <TextBox x:Name="SelectedDate" Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2" Margin="15,0,15,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
-        
-        -->
-        <!--row 3-->
-        <!--
-        <Button x:Name="AddWorkout" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Submit Button"/>-->
+                
+            </Border>
+        </ContentControl>
     </Grid>
 </UserControl>
